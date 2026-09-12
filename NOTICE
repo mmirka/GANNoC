@@ -1,0 +1,24 @@
+GANNoC
+Copyright 2026 Maxime Mirka
+
+This product includes software developed by Maxime Mirka at LIRMM,
+Université de Montpellier / CNRS, as part of the PhD thesis "Techniques
+d'apprentissage pour le contrôle adaptatif multi-niveaux du calcul distribué"
+(2021), and published as:
+
+  M. Mirka, G. Sassatelli, A. Gamatié, "GANNoC: A Framework for Automatic
+  Generation of NoC Topologies using Generative Adversarial Networks",
+  RAPIDO 2021.
+
+Third-party material
+--------------------
+
+None identified. This is a clean-room reimplementation: it carries graph
+structure only, and vendors no third-party source, figures or datasets.
+
+Data format
+-----------
+
+data/reference/generated_topologies/*.pkl and data/reference/reward_networks/*.h5
+are Python pickle and Keras HDF5 files. Both formats execute code on load. Load
+only copies you obtained from this repository.
