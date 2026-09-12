@@ -1,0 +1,44 @@
+# GPU training environment for GANNoC.
+#
+# The TensorFlow 2.2 / CUDA 10.1 stack in environment.yml CANNOT target modern
+# NVIDIA GPUs: anything Ampere or newer (compute capability >= 8.0, e.g. an
+# RTX 30-series card) needs CUDA 11.1+ / TF 2.4+, and TF 2.2 has no kernels for
+# it. This environment retargets the stack to the newest combination that still
+# loads the reward-network HDF5 checkpoints unchanged.
+#
+# TF 2.10.1 is the last TensorFlow release where a plain `pip install tensorflow`
+# provides Linux GPU support without the `[and-cuda]` extra; it pairs with
+# CUDA 11.2 + cuDNN 8.1 (provided here by conda-forge) and supports sm_86.
+#
+# After `conda activate gannoc-gpu`, TF must be able to find the conda CUDA libs:
+#   mkdir -p "$CONDA_PREFIX/etc/conda/activate.d"
+#   echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib' \
+#     > "$CONDA_PREFIX/etc/conda/activate.d/cuda_ld.sh"
+#   conda deactivate && conda activate gannoc-gpu
+#
+# The model code in src/gannoc/ is written against tf.keras (not standalone
+# Keras), so it runs unchanged on this stack. Only the .h5 reward checkpoints
+# depend on the legacy format, and TF 2.10's tf.keras still reads them.
+#
+# Create with:  conda env create -f environment-gpu.yml
+# Then:         conda activate gannoc-gpu
+name: gannoc-gpu
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pip
+  - cudatoolkit=11.2
+  - cudnn=8.1.0
+  - pip:
+      - tensorflow==2.10.1
+      - protobuf==3.19.6      # inside TF 2.10's required >=3.9.2,<3.20 range
+      - numpy==1.23.5
+      - scipy==1.9.3
+      - scikit-learn==1.2.2
+      - matplotlib==3.5.3
+      - networkx==2.8.8
+      - pillow==9.3.0
+      - pydot==1.4.2
+      - pyyaml==6.0.3
+      - h5py==3.7.0           # TF 2.10 requires h5py>=3.1

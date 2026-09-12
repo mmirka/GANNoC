@@ -1,0 +1,34 @@
+# Pins the TensorFlow 2.2 / Keras 2.3.1 stack the reward-network checkpoints
+# in data/reference/ were trained and saved with.
+#
+# All versions below were installed together and verified to import and run.
+# The reward checkpoints (data/reference/reward_networks/*.h5) are HDF5 models
+# saved by Keras 2.3.1 with a TensorFlow backend; they load unchanged here.
+# protobuf must be pinned below 3.20 or TF 2.2 fails to import at all
+# ("Descriptors cannot be created directly").
+# The package code (src/gannoc/) targets tf.keras and also runs on the newer
+# environment-gpu.yml stack; the standalone `keras==2.3.1` pin is only there so
+# the .h5 reward checkpoints load byte-for-byte as they were saved.
+#
+# Create with:  conda env create -f environment.yml
+# Then:         conda activate gannoc
+name: gannoc
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - pip
+  - pip:
+      - tensorflow==2.2.0
+      - keras==2.3.1
+      - protobuf==3.19.6
+      - numpy==1.18.5
+      - scipy==1.4.1
+      - scikit-learn==1.2.2
+      - matplotlib==3.5.3
+      - networkx==2.5.1
+      - pillow==7.2.0
+      - pydot==1.4.2          # optional: scripts/build_gannoc.py --plot (needs Graphviz `dot`)
+      - pyyaml==6.0.3
+      - h5py==2.10.0

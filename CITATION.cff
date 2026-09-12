@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software, please cite the RAPIDO 2021 paper below, which it
+  reimplements.
+title: "GANNoC — reward-guided GAN generation of network-on-chip topologies"
+abstract: >-
+  A clean-room reimplementation of the GANNoC framework: a Wasserstein GAN with
+  gradient penalty whose generator is steered by a frozen reward network, used
+  to generate valid network-on-chip topologies as adjacency matrices.
+type: software
+authors:
+  - family-names: Mirka
+    given-names: Maxime
+repository-code: "https://github.com/mmirka/GANNoC"
+license: Apache-2.0
+preferred-citation:
+  type: conference-paper
+  title: >-
+    GANNoC: A Framework for Automatic Generation of NoC Topologies using
+    Generative Adversarial Networks
+  authors:
+    - family-names: Mirka
+      given-names: Maxime
+    - family-names: Sassatelli
+      given-names: Gilles
+    - family-names: Gamatié
+      given-names: Abdoulaye
+  collection-title: >-
+    Proceedings of the 13th Workshop on Rapid Simulation and Performance
+    Evaluation: Methods and Tools (RAPIDO '21)
+  conference:
+    name: "RAPIDO 2021"
+    city: Budapest
+    country: HU
+  year: 2021
+  month: 1
+  start: 51
+  end: 58
+  publisher:
+    name: "Association for Computing Machinery"
+  doi: "10.1145/3444950.3447283"
+  url: "https://hal-lirmm.ccsd.cnrs.fr/lirmm-03107918v2"

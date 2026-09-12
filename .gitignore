@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+venv/
+env/
+
+# Locally generated NoC datasets — reproducible from scratch with
+# scripts/generate_dataset.py, so they are not tracked. The README stays.
+data/raw/**
+!data/raw/**/
+!data/raw/**/README.md
+
+# Generated figure / demo outputs — the folders stay (via .gitkeep), contents don't
+figures/output/**
+!figures/output/.gitkeep
+demos/output/**
+!demos/output/.gitkeep
+
+# Training artifacts — results/ stays (via .gitkeep), runs don't
+results/**
+!results/.gitkeep
+
+# OS / editor cruft
+.DS_Store
+*.swp
